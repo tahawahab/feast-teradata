@@ -33,7 +33,7 @@ def run_demo():
     fetch_historical_features_entity_sql(store, for_batch_scoring=True)
 
     print("\n--- Load features into online store ---")
-    store.materialize_incremental(end_date=datetime.now())
+    store.materialize(start_date=datetime.now() - timedelta(days=365), end_date=datetime.now())
 
     print("\n--- Online features ---")
     fetch_online_features(store)
